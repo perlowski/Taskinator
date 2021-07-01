@@ -45,8 +45,7 @@ var createTaskEl = function(taskDataObj) {
   listItemEl.className = "task-item";
   listItemEl.setAttribute("data-task-id", taskIdCounter);
 
-  console.log(taskDataObj);
-console.log(taskDataObj.status);
+  
 
   var taskInfoEl = document.createElement("div");
   taskInfoEl.className = "task-info";
@@ -172,7 +171,6 @@ for (var i = 0; i < tasks.length; i++) {
     if (tasks[i].id === parseInt(taskId)) {
       tasks[i].status = statusValue;
     }
-    console.log(tasks)
   }
 
  saveTasks();
@@ -228,7 +226,29 @@ saveTasks();
 
 var saveTasks = function() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
-}
+};
+
+// mediequery items from storage
+// strings to array
+// iterates through tasks array(for loop)
+
+var loadTasks = function() {
+ var tasks = localStorage.getItem("tasks");
+  console.log(tasks)
+  if (!tasks) {
+      var tasks = [];
+      return false;
+  }
+
+  tasks = JSON.parse(tasks);
+  console.log(tasks)
+
+  for (var i=0; i < tasks.length; i++) {
+      document.getElementById("task[i]").id = taskIdCounter
+      console.log(tasks[i])
+  }
+};
+
 
 
 
@@ -240,5 +260,7 @@ pageContentEl.addEventListener("click", taskButtonHandler);
 
 // for changing the status
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
+
+loadTasks();
 
 
