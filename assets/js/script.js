@@ -227,7 +227,7 @@ saveTasks();
 };
 
 var saveTasks = function() {
-    localStorage.setItem("tasks", tasks);
+    localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 
